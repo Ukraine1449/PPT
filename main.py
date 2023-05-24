@@ -1,15 +1,20 @@
-# Dictionary holding what each person is associating with
+# Purpose: To survey and show the results of the survey, about if people like sweet, savory, or sour
+# Extensions: Add formatting for inputs so more are accepted, add an option to add your own preference, add GUI
+# Roman B, May twenty-four
+
+# Dictionary holding what each person is associating with: name, preference
 classList = {
 }
-def getNames():#returns a list of available names from the dictionary named classList
+def getNames():
+    #returns a list of available names from the dictionary named classList
     names = ""
     for i in classList.keys():
         names = names + ", " + i
     return names
 
-print("Input the keyword break whenever you would like to move on to the next section")
 
-def getVotes():# Asks user for their vote by asking for name followed by a comma and then if they like savory, sweet or salty
+def getVotes():
+    # Asks user for their vote by asking for name followed by a comma and then if they like savory, sweet or salty
     # This is then filtered, split, and then put into the classlist
     while True:
         inputRaw = input("Please write your name first, a comma, then if you prefer savory, sweet or salty: ")
@@ -23,7 +28,8 @@ def getVotes():# Asks user for their vote by asking for name followed by a comma
                 print("You may only use one comma")
         else:
             print("Please enter a name followed by a comma, then if you like salty, savory, or sweet")
-def requestVotes():#This is run after all voting is done. It will show all results from polling
+def requestVotes():
+    #This is run after all voting is done. It will show all results from polling
     getListForNames = list(classList.keys())
     while True:
         inp = input("How do you want to read, 1 if by number, 2 if by name:")
@@ -47,7 +53,8 @@ def requestVotes():#This is run after all voting is done. It will show all resul
         else:
             print("Please put either break, 1 or 2")
     return getListForNames
-def returnInfo():#This formats and returns information in a more legible and usable format
+def printInfo():
+    #This formats and returns information in a more legible and usable format
     getListForNames = requestVotes()
     salty = 0
     sweet = 0
@@ -74,6 +81,6 @@ def returnInfo():#This formats and returns information in a more legible and usa
     for i in classList.keys():
         print(i + " put in "+ classList.get(i))
 
-
+print("Input the keyword break whenever you would like to move on to the next section")
 getVotes()
-returnInfo()
+printInfo()
