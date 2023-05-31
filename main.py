@@ -5,8 +5,10 @@
 # Dictionary holding what each person is associating with: name, preference
 classList = {
 }
+
+
 def getNames():
-    #returns a list of available names from the dictionary named classList
+    # returns a list of available names from the dictionary named classList
     names = ""
     for i in classList.keys():
         names = names + ", " + i
@@ -17,19 +19,21 @@ def getVotes():
     # Asks user for their vote by asking for name followed by a comma and then if they like savory, sweet or salty
     # This is then filtered, split, and then put into the classlist
     while True:
-        inputRaw = input("Please write your name first, a comma, then if you prefer savory, sweet or salty: ")
+        inputRaw = input("Please write your name first, a comma, then if you prefer savory, sweet or salty, or all: ")
         if "break" in inputRaw.lower():
             break
         if "," in inputRaw:
             inputSplit = inputRaw.split(",")
-            if (len(inputSplit) == 2):
+            if len(inputSplit) == 2:
                 classList[inputSplit[0].lower()] = inputSplit[1].lower()
             else:
                 print("You may only use one comma")
         else:
             print("Please enter a name followed by a comma, then if you like salty, savory, or sweet")
+
+
 def requestVotes():
-    #This is run after all voting is done. It will show all results from polling
+    # This is run after all voting is done. It will show all results from polling
     getListForNames = list(classList.keys())
     while True:
         inp = input("How do you want to read, 1 if by number, 2 if by name:")
@@ -53,12 +57,15 @@ def requestVotes():
         else:
             print("Please put either break, 1 or 2")
     return getListForNames
+
+
 def printInfo():
-    #This formats and returns information in a more legible and usable format
+    # This formats and returns information in a more legible and usable format
     getListForNames = requestVotes()
     salty = 0
     sweet = 0
     savory = 0
+    all1 = []
     other = []
     for i in getListForNames:
         current = classList.get(i)
@@ -71,15 +78,24 @@ def printInfo():
         elif "savor" in current.lower():
             savory += 1
             classList.pop(i)
+        elif "all" in current.lower():
+            all1.append(current)
+            classList.pop(i)
         else:
             other.append(i)
-            other.append(classList.get(i))
     print("Salty: ", salty)
     print("Savory: ", savory)
     print("Sweet: ", sweet)
     print("Other: ", other)
+    print("And for those special people, that wanted all, I assume you have something wrong with you. So here you are!")
+    for i in all1:
+        print(i+" is crazy, they like it all at the same time. ")
+        print("Calling 911...")
+        print("Psychiatric hospital room ready...")
+        print("Support services on their way to family...")
     for i in classList.keys():
-        print(i + " put in "+ classList.get(i))
+        print(i + " put in " + classList.get(i))
+
 
 print("Input the keyword break whenever you would like to move on to the next section")
 getVotes()
